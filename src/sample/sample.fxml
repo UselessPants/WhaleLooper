@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="337.0" styleClass="anchor" stylesheets="@style" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <ImageView fx:id="leftButton" fitHeight="150.0" fitWidth="75.0" layoutX="43.0" layoutY="506.0" onMouseClicked="#leftButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="left_button">
+         <image>
+            <Image url="@WhaleImg/buttonopen.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="rightButton" fitHeight="150.0" fitWidth="75.0" layoutX="220.0" layoutY="506.0" onMouseClicked="#rightButtonClicked" pickOnBounds="true" preserveRatio="true" styleClass="right_button">
+         <image>
+            <Image url="@WhaleImg/buttonopen.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="20.0" layoutX="159.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/slider.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="bpmButton" fitHeight="15.0" fitWidth="200.0" layoutX="22.0" layoutY="24.0" onMouseClicked="#bpmButtonClicked" opacity="0.21" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/Ellipse%202.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="15.0" layoutX="22.0" layoutY="50.0" onMouseClicked="#t1ButtonClicked" opacity="0.32" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/Ellipse%202.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="15.0" layoutX="22.0" layoutY="75.0" onMouseClicked="#t4ButtonClicked" opacity="0.22" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/Ellipse%202.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="15.0" layoutX="22.0" layoutY="100.0" onMouseClicked="#t3ButtonClicked" opacity="0.18" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/Ellipse%202.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="15.0" layoutX="22.0" layoutY="125.0" onMouseClicked="#t2ButtonClicked" opacity="0.22" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WhaleImg/Ellipse%202.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="bpmLabel" layoutX="45.0" layoutY="19.0" styleClass="bpmButton" text="120" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

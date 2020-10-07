@@ -1,0 +1,10 @@
+::root {
+}
+
+.anchor {
+    -fx-background-image: url('/sample/WhaleImg/whalelooperfullsmall2.png');
+}
+
+.bpmButton:pressed {
+    -fx-opacity: 0;
+}
