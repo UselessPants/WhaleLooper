@@ -34,6 +34,23 @@ public class Controller {
     public static long loopLengthMillis = (60000 / BPM * (timeSignature[0])) * 8;
     public boolean startPlaying = false;
     Timer bpmTime = new Timer();
+    TimerTask timedPlay = new TimerTask() {
+        @Override
+        public void run() {
+            if ( !tracksMuted[0] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav")))) {
+                musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav");
+            }
+            if ( !tracksMuted[2] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav")))) {
+                musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav");
+            }
+            if ( !tracksMuted[1] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav")))) {
+                musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav");
+            }
+            if ( !tracksMuted[3] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav")))) {
+                musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav");
+            }
+        }
+    };
 
     public Controller() throws IOException {
     }
@@ -51,7 +68,7 @@ public class Controller {
         if (Files.exists(Path.of("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"))) {
             MergeAudio merger = new MergeAudio(trackNumber, ("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"));
             merger.mainClip();
-            bpmTime.scheduleAtFixedRate(timedPlay(), 0, loopLengthMillis);
+            bpmTime.scheduleAtFixedRate(timedPlay, 0, loopLengthMillis);
             rightButton.setImage(new Image("sample/WhaleImg/buttonopen.png"));
         } else {
             rightButtonPressed = !(rightButtonPressed);
@@ -151,19 +168,4 @@ public class Controller {
         }
     }
 
-    public TimerTask timedPlay() {
-        if ( !tracksMuted[0] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav")))) {
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav");
-        }
-        if ( !tracksMuted[2] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav")))) {
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav");
-        }
-        if ( !tracksMuted[1] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav")))) {
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav");
-        }
-        if ( !tracksMuted[3] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav")))) {
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav");
-        }
-        return null;
-    }
 }
