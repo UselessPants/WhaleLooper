@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.scenario.effect.Merge;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,10 +8,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Controller {
     PlayMusic musicPlayer = new PlayMusic();
@@ -33,6 +33,7 @@ public class Controller {
     private static int BPM = 120;
     public static long loopLengthMillis = (60000 / BPM * (timeSignature[0])) * 8;
     public boolean startPlaying = false;
+    Timer bpmTime = new Timer();
 
     public Controller() throws IOException {
     }
@@ -48,14 +49,10 @@ public class Controller {
     }
     public void rightButtonClicked(MouseEvent mouseEvent) throws IOException {
         if (Files.exists(Path.of("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"))) {
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav");
-            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav");
-
-            System.out.println("Playing");
-            /*MergeAudio merger = new MergeAudio(trackNumber, ("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"));
+            MergeAudio merger = new MergeAudio(trackNumber, ("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"));
             merger.mainClip();
-            Files.delete(Path.of("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/RecordAudio.wav"));
-            rightButton.setImage(new Image("sample/WhaleImg/buttonopen.png"));*/
+            bpmTime.scheduleAtFixedRate(timedPlay(), 0, loopLengthMillis);
+            rightButton.setImage(new Image("sample/WhaleImg/buttonopen.png"));
         } else {
             rightButtonPressed = !(rightButtonPressed);
             if (rightButtonPressed && !leftButtonPressed) {
@@ -152,5 +149,21 @@ public class Controller {
         } else {
             trackNumber = 4;
         }
+    }
+
+    public TimerTask timedPlay() {
+        if ( !tracksMuted[0] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav")))) {
+            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackOne/RecordAudio.wav");
+        }
+        if ( !tracksMuted[2] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav")))) {
+            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackThree/RecordAudio.wav");
+        }
+        if ( !tracksMuted[1] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav")))) {
+            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackTwo/RecordAudio.wav");
+        }
+        if ( !tracksMuted[3] && Files.exists(Path.of(("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav")))) {
+            musicPlayer.executePlay("C:/Users/bangsom/IdeaProjects/WhaleLooper/src/sample/Audio Files/TrackFour/RecordAudio.wav");
+        }
+        return null;
     }
 }
